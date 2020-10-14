@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>For</title>
+    <script>// схема =>> deposit(money,percent,years) =>> var i<=years, var p(прибыль)=money*percent/100(по правилам математики) =>> money+=p =>> DOM
+        function deposit(money,pr,years){
+            var i,p;
+            for(i=1;i<=years;i++){
+                p=money*pr/100;//Ежегодная прибыль
+                money+=p;
+                document.write('За '+i+' год Ваша прибыль составила '+Math.round(p)
+                +' и Ваша сумма вклада составляет '+Math.round(money)+'<hr>');
+            }
+        }
+
+        var money,pr,man,years;
+        for(man=1;man<=10;man++){
+            money=parseInt(Math.random()*900000+100000);//прикольная штука чтобы сделать интервал чисел * на max и + min
+            years=parseInt(Math.random()*4+1);
+            pr=8;
+            if(money<30000){
+                pr=7;
+            }
+            document.write('<h1>Клиент № '+man+' (сумма='+money+', ставка '+pr+')</h1>');
+            deposit(money,pr,years);
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
