@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HW3</title>
+    <script>
+
+        function countBasketPrice(basket){
+            var sum=0;
+            for (var goodPrice in basket){//уже использовать значение каждого товара
+                sum += basket[goodPrice];
+            }
+            return sum;
+        }
+
+    var basket = [];
+    var goods = ['Товар1', 'Товар2', 'Товар3', 'Товар4'];
+    var perPrice;
+
+        document.write('<h1> Корзина с 4 товарами </h1><br>')
+    for(var good of goods){// допустим придать математическое значение каждому товару
+        perPrice = parseInt(Math.random()*900+100);//от 100 до 1000 будет
+        document.write('<p>Цена на '+good+' = '+perPrice+'</p>');
+        basket[good]=perPrice;
+    }
+
+    document.write('<p>Сумма всех товаров = '+countBasketPrice(basket)+'</p>');
+
+    /// надо будет повторить и сделать самому снова
+        
+
+
+
+    </script>
+</head>
+<body>
+</body>
+</html>
