@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Massives</title>
+    <script>
+        var mass = [1,2,3,'str',true];
+        var size = mass.length;
+        //alert(mass[size-1]);//указать последний элемент массива
+
+        //10,20.......100
+        var mass2 = [];
+        for(var i=0;i<10;i++){
+            mass2[i] =(i+1)*10;
+        }
+
+        var x1 = 'Товар 1';
+        var x2 = 'Товар 2';
+        var x3 = 'Товар 3';
+        var x4 = 'Товар 4';
+
+        var goods = [x1,x2,x3,x4];
+        for(var i=0;i<goods.length;i++) {
+            //document.write(goods[i]+'<br>');
+        }
+        //Идентичны!!! \\^^^^^^^^^^^^^^
+
+       // for(var good in goods){//good индекс массива goods и заменяет цикл for с i
+        //    document.write(goods[good]+'<br>');
+       // }
+
+        goods.push('Товар 5');//добавление элемента в конец массива, goods.pop удаление из массива какого-то элемента
+
+        for(var good of goods){//for of/ вывод без индекса
+            document.write(good+'<br>');
+        }
+
+        console.log(mass2);
+
+        //Поиск элементов в массиве
+        alert(goods.indexOf('Товар 5'));//Если элемент не найден. то функция вернет -1, иначе функция вернет индекс первого встречного элемента
+
+        //Найдём сумму всех товаров в магазине
+
+        var shop = [], sum=0;
+
+        for(var i=0;i<10;i++){
+            shop[i] = parseInt(Math.random()*700+300);
+            console.log('Товар № '+(i+1)+' стоит '+shop[i]+'\n');
+            sum+=shop[i];
+        }
+        console.log('Стоимость всех товаров = '+sum);
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HW2</title>
+    <script type="text/javascript">
+
+/*
+       // Задание 1
+        var a = 1, b = 1, c, d;     // = b, c, d = 1
+        c = ++a; alert(c);          //2 c = a + 1 = 1 + 1 = 2 // отрабатывает значение а с префикс инкрементом.
+        d = b++; alert(d);          //1 d = b (++ не отрабатывает, т.к. это пост инкремент и значение b возвращается, не отрабатывая ++. однако увеличит значение самого b
+        c = (2+ ++a); alert(c);     //5 = 2 + ++2 тоесть 2 + 3 (++ возвращается c) теперь с = 5, а 'а' = 3
+        d = (2+ b++); alert(d);     //4 = 2 + 2++ тоесть 2 + 2 (++ не возвращается) теперь d = 4, a 'b' = 3
+        alert(a);                   //3                                                                 ^^^
+        alert(b);                   //3                                                                 ^^^
+
+        //Задание 2
+        var a = 2;
+        var x = 1 + (a *= 2); // x = 1 + (a = a * 2) = 5
+        alert(x);
+*/
+        //Задание 3
+
+        function randomNumber(n) {
+            return ((Math.random() < 0.5) ? -1 : 1)*parseInt(Math.random() * (10 - 1) + 1); // случайно не правильно понял задание про положительные и отрицательные числа... И сделал с - и + хаха)))) а надо было %
+        }
+        function randomNumberN(n){
+            return parseInt(Math.random() * (15 - 1) + 1);
+        }
+
+        function mult(a,b) {
+            return a*b
+        }
+        function sum(a,b) {
+            return a+b;
+        }
+        function diff(a,b) {
+            if(a==b){
+                return console.log('Числа равны');
+            }
+            if(a>b)
+                return a-b;
+            else
+                return b-a;
+        }
+        function left(n) {
+            if(n % 2 == 0)
+                return console.log('Это целое число');
+            else
+                return console.log('Это отрицательное число');
+        }
+        function div(a,b) {
+            if(b!=0)
+                return a/b;
+            else
+                console.log('на 0 нельзя делить');
+        }
+
+
+
+
+        var a = randomNumber(); // от - 10 до + 10
+        var b = randomNumber();// от - 10 до + 10
+
+
+        if(a>=0 && b>=0)
+            console.log('Разность чисел: '+diff(a,b));
+        else if(a<0 && b<0)
+            console.log('Произведение чисел: '+mult(a,b));
+        else
+            console.log('Сумма чисел: '+sum(a,b));
+
+
+        //Задание 4
+        a = randomNumberN(); // от 0 до 15
+
+        switch(a){
+            case a:
+                console.log('Случайное число от 0-15 и счёт до 15: ')
+                for(var i=a; i<=15; i++){
+                    console.log(i);
+                }
+        }
+
+        //Задание 5
+
+        left(randomNumberN());
+        console.log('Деление: '+div(a,b));
+        // Это функции остатка и деления. Примеры функций вычитания, сложения и умножения есть в предыдущих заданиях.
+
+
+       //Задание 6
+
+
+
+       function mathOperation(arg1,arg2,operation) {
+           switch (operation) {
+               case mult:
+                   return mult(arg1,arg2);
+               case sum:
+                   return sum(arg1,arg2);
+               case diff:
+                   return mult(arg1,arg2);
+               case div:
+                   return div(arg1,arg2);
+               default:
+                   return NaN;
+           }
+
+       }
+
+        console.log('mult: '+mathOperation(10,5,mult));
+        console.log('div: '+mathOperation(10,5,div));
+        console.log('sum: '+mathOperation(10,5,sum));
+
+
+        //Задание 7, сравнить 0 и Null... не делал
+
+        var varNull = null, varZero = 0;
+        if(varNull>varZero) {
+            console.log('null > 0');// этот и следующий параметры почему-то не появляются в консоли, только 3,4,5,6 не могу понять почему...
+        }
+        if(varNull<varZero) {
+            console.log('null < 0');
+        }
+        if(varNull>=varZero) {
+            console.log('null >= 0');
+        }
+        if(varNull<=varZero) {
+            console.log('null <= 0');
+        }
+        if(varNull==varZero) {
+            console.log('null == 0');
+        }
+        if(varNull!=varZero) {
+            console.log('null != 0');
+        }
+
+
+        //Задание 8
+
+        function power(val,pow) {
+            if (pow == 0)
+                return 1;
+            if (pow == 1)
+                return val;
+            if (pow > 0)
+                return val * power(val, pow - 1);
+            if (pow < 0)
+                return (1 / val) * (power(val, pow + 1));
+            else
+                return 1;
+        }
+        console.log('power: '+power(5,3));
+
+
+        //power(2,3) = 2 * power(2,2) = 2*2*2
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

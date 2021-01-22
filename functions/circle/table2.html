@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table</title>
+    <script>
+
+        var table = "<table border='1' width='80%'>";
+        var tr = 1;
+        while(tr<=100){//столбцы
+            table+='<tr>';
+            var td = 1
+            while(td<=10) {//ячейки
+                table += '<td>' + (tr*td) + '</td>';
+                td++;
+            }
+            table+='</tr>';
+            tr++;
+        }
+        table += "</table>";
+        document.write(table);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

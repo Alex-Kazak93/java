@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    Access-Control-Allow-Origin: *
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-image: url(BackGround/gfwPusm-star-wars-space-background.jpg);
+            height: 1500px;
+        }
+        .blocks {
+            float: left;
+            display: inline-block;
+        }
+        .planets{
+            border-radius: 50%;
+            background-position: 50% 50%;
+        }
+        .planetText {
+            color: white;
+            text-align: center;
+        }
+        .planetText p {
+            height: 10px;
+        }
+        #hot{
+            transform: rotate(90deg);
+        }
+
+    </style>
+
+    <script>
+
+        // var all = get("https://swapi.dev/api/");
+        // var planets = get("https://swapi.dev/api/planets");
+        // var people = get("https://swapi.dev/api/people");
+        // var films = get("https://swapi.dev/api/films");
+        // var species = get("https://swapi.dev/api/species");
+        // var starships = get("https://swapi.dev/api/starships");
+        // var vehicles = get("https://swapi.dev/api/vehicles");
+        var i =1;
+        var tatAll = createAndPost('div', 'tatAll', 'blocks', 'body');
+        var tat = createAndPost('div','tatooine','planets', 'div');
+        var tatText = createAndPost('div','tatooineText', 'planetText', 'div')
+        var tatooine = get("https://swapi.dev/api/planets/1", tat, tatText, "url('Planets/1.png')");
+        var yavAll = createAndPost('div', 'yavAll', 'blocks', 'body')
+        var yav = createAndPost('div', 'yavinIV','planets', 'div');
+        var yavText = createAndPost('div','yavinText', 'planetText', 'div')
+        var yavinIV = get("https://swapi.dev/api/planets/3", yav, yavText, "url('Planets/3.png')");
+        var hotAll = createAndPost('div', 'hotAll', 'blocks', 'body')
+        var hot = createAndPost('div', 'hot','planets', 'div');
+        var hotText = createAndPost('div','hotText', 'planetText', 'div')
+        var hoth = get("https://swapi.dev/api/planets/4", hot, hotText, "url('Planets/4.png')");
+
+
+        function createAndPost(element,name, className, where) {
+            var el = document.createElement(element);
+            var put = document.getElementById(where);
+            el.id= name;
+            el.className = className;
+            document.querySelector(where).appendChild(el);
+            return el;
+        }
+
+        function get(get, elm, elmText, linkIm) {
+            fetch(get)
+                .then(data => data.json())
+                .then(data => {info = data})
+                .then(() => {
+                    elm.style.backgroundSize = elmText.style.width = elm.style.width = elm.style.height = info.diameter/50+'px';
+                    elm.style.backgroundImage = linkIm;
+                    var count = 1;
+                    for(var key in info){
+                        if(count<=9) {
+                            var paragraf = document.createElement('p');
+                            paragraf.innerHTML = '<p>' + key + ': ' + info[key] + '</p><br>'
+                            elmText.appendChild(paragraf);
+                        }
+                        count++;
+                  }
+                })
+                .finally(() => console.log(info))
+        }
+
+
+
+    </script>
+
+</head>
+
+<body>
+
+
+
+</body>
+
+</html>
