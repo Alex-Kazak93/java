@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Jquery</title>
+
+    <script src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script> // Надо познакомиться с этим поближе
+        var i=1, value;
+        function add(){
+            value = '<option>Элемент № '+ i +'</option>';
+            jQuery('select').append(value);
+            i++;// либо $
+        }
+    </script>
+    <div>
+        <p>Первый параграф</p>
+        <p id='x'>2 параграф</p>
+        <p>3 параграф</p>
+
+
+        <select name="" id=""></select>
+    </div>
+
+
+
+    <button onclick="$('div').slideDown(3000)">Показать</button>
+    <button onclick="$('div').slideUp(3000)">Скрыть</button>
+    <button onclick="add()">Добавить элемент в список</button>
+
+</head>
+<body>
+
+</body>
+</html>

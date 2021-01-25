@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bulls & Cows</title>
+
+    <script>
+
+        var numbers = [];
+        genNumbers();
+        alert(numbers);
+        game();
+
+
+
+        var min = 1;
+        var max = 9;
+        var attemps = 0;
+
+
+        function genNumbers(){
+            for (var i = 0; i<4;i++){
+                var number = +Math.random()*(max-min)+min;
+                if(i==0){
+                    numbers[0] = number;
+                } else {
+                    while (numbers.indexOf(number) != -1) {
+                        number = Math.random() * (max - min) + min;
+                    }
+                    numbers[i]=number;
+                }
+            }
+
+
+        }
+
+        function checkNumber(myResult) {
+            attemps++;
+            var answer = [false, 0, 0];
+            var ranks = myResult.split("");
+            for (var i = 0; i < ranks.length; i++) {
+                if (numbers[i] == ranks[i])
+                    answer[1]++
+                else if (numbers.indexOf(ranks[i]) != -1) {
+                    answer[2]++;
+                }
+                if(answer[1]==4){
+                    answer[0]= true;
+                }
+            }
+            return answer;
+        }
+
+
+        function game() {
+            var userAnswer = prompt('Введите 4 числа, введите -1, чтобы закончить игру');
+            var gameIsRunning = true;
+
+            while (gameIsRunning) {
+                if (userAnswer == -1)
+                    gameIsRunning = false;
+                else if (userAnswer == 0 || isNaN(userAnswer)) {
+                    alert('Вы ввели не число.');
+                    userAnswer = prompt('Введите 4 числа, введите -1, чтобы закончить игру');
+                } else {
+                    var answer = checkNumber(userAnswer);
+                }
+            }
+        }
+
+ 
+    </script>
+
+
+</head>
+<body>
+
+</body>
+</html>

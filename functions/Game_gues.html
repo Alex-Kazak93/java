@@ -1,0 +1,123 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cows</title>
+
+    <script>
+
+        var attemps = 0;//число  попыток
+
+        var numbers = [];
+        generateNumber();
+        alert(numbers);
+        guessNumber();
+
+        function generateNumber(){// делаем массив из 4 уникальных чисел
+            var min = 1;
+            var max = 9;
+            for(var i =0; i<4;i++){
+                var part = parseInt(Math.random()*(max-min)+min);
+                //первое число всегда уникально
+                if(i==0){
+                    numbers[0] = part;
+                }
+                else{ // пока не сгенерируем уникальное число, генерируем новое случайное число
+                    while(numbers.indexOf(part) != -1){ // Элемент найден
+                        part = parseInt(Math.random()*(max-min)+min);
+                    }
+                    numbers[i] = part;
+                }
+            }
+        }
+        function checkNumber(myResult){//1234
+            //каждая проверка увеличивает количество попыток на 1
+            attemps++;
+
+            //массив результата
+            // 0 - общий результат
+            // 1 - быки
+            // 2 - коровы
+            var answer = [false, 0, 0];
+
+            //раскладываем число на разряды
+            console.log(myResult);
+            console.log(numbers);
+
+            /* s = '1,2,3,4';  // пример разделения строки на элементы массива
+            mas = s.split(",")
+             */
+
+            /*
+            var mas = [1,2,3,4];
+            var mas2 = [];
+            for(var i in mas){
+            mas2[]=mas[i];
+            }
+             */
+
+            var ranks = myResult.split("");//массив, полученный из введенного числа, в скобках указывается через что делим,
+            // в кавычках можно выставить и запятую и все что через запятую из строчки будет добавлено как элементы массива
+
+            for(var i = 0;i<ranks.length;i++){
+                //если по по индексу значения совпадают, то это бык;
+                if(parseInt(ranks[i])==numbers[i]){
+                    answer[1]++;
+                }
+                //Если число просто есть в массиве, то это корова
+                else if(numbers.indexOf(parseInt(ranks[i])) != -1){
+                    answer[2]++;
+                }
+            }
+
+            //если наабралось 4 быка, то это победа
+            if(answer[1]==4){
+                answer[0] = true;
+            }
+            return answer;
+        }
+
+
+
+        function guessNumber(){
+            var result = prompt("Введите число (-1 чтобы закончить игру", 0);
+            var gameIsRunning = true;
+
+            // пока игрок не угадал число
+            while (gameIsRunning){
+                //выход из игры
+                if(parseInt(result) == -1){
+                    gameIsRunning = false;
+                }
+                //игрок ввел некорректные данные
+                else if(parseInt(result)==0 || isNaN(parseInt(result))){
+                    alert('Вы ввели не число');
+                    //запрашиваем по новой
+                    result = prompt("Введите число (-1 чтобы закончить игру", 0);
+                }
+                //проверяем число
+                else{
+                    var answer = checkNumber(result);//answer[false,1,1] игра продолжается, 1 бык одна корова например
+                    if(answer[0]){
+                        //число угадано
+                        alert('Поздравляем! Вы угадали число. Кол-во попыток: '+attemps);
+                        //останавливаем игру
+                        gameIsRunning = false;
+                    }
+                    else{
+                        //следующий ход
+                        result = prompt('Быки: '+answer[1]+' Коровы: '+answer[2]+' Введите число (-1 чтобы закончить игру)', 0);
+                    }
+                }
+            }
+        }
+
+
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

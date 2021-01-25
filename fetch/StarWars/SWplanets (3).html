@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=320, initial-scale=1">
+    <meta charset="utf-8">
+    <style>
+      body {
+        background-image: url('#');
+        min-width: 100%;
+        min-height: 100%;
+        font: Arial 14px;
+      }
+      fieldset {
+        margin-bottom: 40px;
+      }
+      .circle {
+        height: 300px;
+        width: 300px;
+        border: 1px solid #000;
+        border-radius: 50%;
+      }
+      .block {
+        width: 33%;
+        height: 600px;
+        display: inline-block;
+      }
+      
+      ul {
+        list-style-type: none;
+      }
+      .header {
+        height: 100px;
+      }
+      
+    </style>
+  
+  
+    
+  </head>
+  <body>
+    <div class="header">
+      
+      <h1 id="hello">
+      Hello my young Padavane.
+      Tell me your name.
+    </h1>
+      
+    </div>
+    
+   
+    
+    <form id="form1">
+    <fieldset id="dialogue">
+        <legend id="helper">Personal Information:</legend>
+        <input type="text" name="field1" placeholder="Name" id="field1"/>
+        <input type="text" name="field2" placeholder="Surname" id="field2"/>
+        <input type="button" value="Submit" id="btnsubmit" onclick="submitForm()">
+      </fieldset>
+    </form>
+    
+  </body>
+  <script>  
+   
+    let i=1;
+    
+    let user = {};
+    let quest = {
+      q1a: 'Glad to meet you, ',
+      q2a: ' What planet of Star Wars Univers you would like to go?',
+      q1b: 'Nice Choice, ',
+      q2b: 'Travel may take some time'
+      
+    };
+    
+
+function submitForm() {
+  
+  let frm = document.getElementById('form1');
+  let field1Value = document.getElementById('field1').value; 
+  let field2Value = document.getElementById('field2').value; 
+   //frm.submit(); // Submit
+  frm.reset();  // Reset 
+  let hello = document.getElementById('hello');
+  let helper = document.getElementById('helper');
+  let field1 = document.getElementById('field1');
+  let field2 = document.getElementById('field2');
+  let btnsubmit = document.getElementById('btnsubmit');
+  if(i===1.){
+    field1.placeholder = field2.placeholder = 'Planet'
+    user.name = field1Value;
+    user.surname = field2Value;
+    hello.innerHTML = quest.q1a +field1Value+" "+field2Value+"<br>"+ quest.q2a;
+    helper.innerHTML = "Name 1 or 2 planets you would like to go";
+    i++;
+    btnsubmit.href = "https://www.starwars.com/databank/"+user.planet1;
+    return false;
+  }if(i===2){
+  helloHelper('Planet', field1Value, field2Value)
+    let fieldset = document.querySelector('fieldset');
+    fieldset.style.display = "none";
+  return false;
+  }
+  
+  
+  function helloHelper(placeholder, f1, f2, q1, q2) {
+    field1.placeholder = field2.placeholder = placeholder;
+    hello.innerHTML = quest.q1b +user.name+"<br>"+ quest.q2b;
+  user.planet1 = f1;
+  user.planet2 = f2;
+    helper.innerHTML = "Name 1 or 2 planets you would like to go";
+    i++;
+    console.log(user);
+   // letsStartOurFly("https://www.starwars.com/databank/"+user.planet1);
+                    
+    return false;
+  }
+  //Prevent page refresh
+   
+// if(i===2){
+   // hello.innerHTML = "Glad to meet you, "+field1+"<br> What planet of Star Wars World you would like to got?";
+   // helper.innerHTML = "Name 1 or 3 planets you would like to go";// 
+//}
+}
+   // function letsStartOurFly(key){
+      
+      //fetch('https://swapi.dev/api/planets/'+key)
+      //.then()
+     // .then()
+   // }
+    
+    
+   fetch('https://swapi.dev/api/planets/')
+.then(response => response.json())
+.then(data=> {
+     data.results.forEach(planet => {
+       let i = 1;
+       
+       
+       let block = document.createElement('div');
+       block.className = "block";
+       document.querySelector('body').appendChild(block);
+       
+       let circle = document.createElement('div');
+       circle.className = "circle";
+       block.appendChild(circle);
+       
+       let newUl = document.createElement('ul');
+       block.appendChild(newUl);
+       for(key in planet){ 
+         if(i<9){
+           let liNew = document.createElement('li');
+           liNew.id = key;
+         liNew.innerText = key+': '+planet[key];
+          newUl.appendChild(liNew);
+      i++
+         }
+       }
+     })
+   }) 
+    
+    </script>
+</html>

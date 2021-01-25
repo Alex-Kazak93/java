@@ -51,7 +51,8 @@
 
 
 
-            var bin = [20,50,30,50,10];
+            var basket = ['Товар1', 'Товар2', 'Товар3', 'Товар4'];
+            var bin = [];
             document.write('Задание 2-3<br><h3>Делаем Корзину</h3><br>');
 
             var price;
@@ -61,15 +62,20 @@
                     sum += prices[good]
                 }
             }
+            for(var good of basket){ // of и спользуется чтобы обойти все значения массива (названия)
+                price = parseInt(Math.random()*50+50); // от 50 до 100, или от y до x+y где формула = Math.random()*(x-y)+y;
+                document.write(good+' = '+price+'<br>');
+                bin[good] = price;
+            }
 
 
-            document.write('В корзине '+bin.length+' товаров\n'+'Это их цены: '+bin+'<br>');
+            document.write('В корзине '+basket.length+' товаров\n<br>');
             document.write('А это сумма цен на все товары в корзине: '+countBasketPrice(bin)+'<br><hr>');
 
             function countBasketPrice(bin){
                 var amount = 0;
-                for(var i=0;i<bin.length-1;i++){//проходимся по все длинне массива
-                     amount += bin[i];//добавляем в новую переменную равную нулю по единице массива bin[i]
+                for(var goodys in bin){//проходимся по все длинне массива
+                     amount += bin[goodys];//добавляем в новую переменную равную нулю по единице массива bin[i]
                 }
                 return amount;
             }
@@ -77,23 +83,41 @@
             //Задание 4
 
         document.write('Задание 4<br>');
-        for(i=0;i<=9;document.write(i++)){}
+        for(i=0;i<=9;document.write(i++));
 
 
             //Задание 5
 
 
         document.write('<hr>Задание 5 в консоли<br>');
+
+        var z = 'x ';
+        var summm = '';
+
+        for(var i = 1; i<=20;i++){
+            summm += z;
+            console.log(summm)
+        }
+
+
+
+
+
+
+
+
+
+
+        /*
     var i = 1;
     var x = 'x';
+    var sumX = '';
 
     for(i=1;i<=20;i++){
-        for(var y=1;y<=i;y++){
-            console.log(x);
-        }
-        console.log('<br>');
-    }// В консоли плохо работает. Зато работает в document.write
-
+        sumX += x;
+        console.log(sumX)
+        }// В консоли плохо работает. Зато работает в document.write
+*/
 
 
     </script>

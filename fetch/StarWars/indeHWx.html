@@ -42,6 +42,9 @@
         // var species = get("https://swapi.dev/api/species");
         // var starships = get("https://swapi.dev/api/starships");
         // var vehicles = get("https://swapi.dev/api/vehicles");
+
+        let url = new URL('https://swapi.dev/api/');
+        console. log
         var i =1;
         var tatAll = createAndPost('div', 'tatAll', 'blocks', 'body');
         var tat = createAndPost('div','tatooine','planets', 'div');
@@ -59,32 +62,33 @@
 
         function createAndPost(element,name, className, where) {
             var el = document.createElement(element);
-            var put = document.getElementById(where);
             el.id= name;
             el.className = className;
             document.querySelector(where).appendChild(el);
             return el;
         }
 
-        function get(get, elm, elmText, linkIm) {
-            fetch(get)
-                .then(data => data.json())
-                .then(data => {info = data})
-                .then(() => {
-                    elm.style.backgroundSize = elmText.style.width = elm.style.width = elm.style.height = info.diameter/50+'px';
-                    elm.style.backgroundImage = linkIm;
-                    var count = 1;
-                    for(var key in info){
-                        if(count<=9) {
-                            var paragraf = document.createElement('p');
-                            paragraf.innerHTML = '<p>' + key + ': ' + info[key] + '</p><br>'
-                            elmText.appendChild(paragraf);
-                        }
-                        count++;
-                  }
-                })
-                .finally(() => console.log(info))
-        }
+        fetch
+
+        // function get(get, elm, elmText, linkIm) {
+        //     fetch(get)
+        //         .then(data => data.json())
+        //         .then(data => {info = data})
+        //         .then(() => {
+        //             elm.style.backgroundSize = elmText.style.width = elm.style.width = elm.style.height = info.diameter/50+'px';
+        //             elm.style.backgroundImage = linkIm;
+        //             var count = 1;
+        //             for(var key in info){
+        //                 if(count<=9) {
+        //                     var paragraf = document.createElement('p');
+        //                     paragraf.innerHTML = '<p>' + key + ': ' + info[key] + '</p><br>'
+        //                     elmText.appendChild(paragraf);
+        //                 }
+        //                 count++;
+        //           }
+        //         })
+        //         .finally(() => console.log(info))
+        // }
 
 
 

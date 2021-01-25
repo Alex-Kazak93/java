@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+        var car = {
+            name:'Audi',
+            year:'2019',
+            color:'white',
+            enginStarted:false,
+            test:function (){
+
+            }
+        }
+
+
+        var car2 = {
+            name:'BMW',
+            year:'2018',
+            color:'black',
+            enginStarted:false
+        }
+
+        car.typeK = 'седан';// если вне поля(тела) то присваивание через =
+        //console.log(car);
+
+        car.start = startEngine; // car.start становится функцией startEngine (присваиваем свойству)
+        car2.start = startEngine;// теперь с помощью car$.start() можно обращаться обращаться к той или иной функции
+
+        function startEngine() {
+            if(!this.engineStarted){
+                this.enginStarted = true;
+            }
+        }
+
+        car.stop = function(){
+            if(this.engineStarted){
+                this.engineStarted = false
+            }
+        }
+
+        car.start();
+        car2.start();
+        //console.log(car);
+
+
+        var car3 = car;
+        car = null;
+
+        delete car3.year;
+        //console.log(car3);
+
+        var cars = [car2,car3];
+
+        console.log(car);
+
+        for(var i=0;i<cars.length;i++){
+            console.log(cars[i].name);
+        }
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>HW3</title>
-    <script>
 
+    <script type="text/javascript">
+
+        "use strict";
+        /*
         function countBasketPrice(basket){
             var sum=0;
             for (var goodPrice in basket){//уже использовать значение каждого товара
@@ -28,11 +26,22 @@
 
     /// надо будет повторить и сделать самому снова
         
+        */
 
+        var i = 2;
 
+        while(i<=100){
+            var del = 2;
+            while(del<=i){
+                if(i%del==0)
+                    break;
+                else
+                    del++;
+            }
+            if(del==i){
+                console.log(i);
+            }
+            i++;
+        }
 
     </script>
-</head>
-<body>
-</body>
-</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chess</title>
+
+    <style>
+        table {
+            /*border: 1px solid #000000;*/
+            height: 800px;
+            width: 800px;
+            border-collapse: collapse;
+            margin: 0 auto;
+            background-color: burlywood;
+        }
+        td {
+            border: 2px solid #000000;
+        }
+        td:active {
+            color: violet;
+        }
+
+        .row1 td:nth-child(2n):nth-last-of-type(n+2),
+        .row3 td:nth-child(2n):nth-last-of-type(n+2),
+        .row5 td:nth-child(2n):nth-last-of-type(n+2),
+        .row7 td:nth-child(2n):nth-last-of-type(n+2){
+            background-color: sienna;
+            /*opacity: 0.5;*/
+        }
+        .row2 td:nth-child(n+3):nth-child(odd),
+        .row4 td:nth-child(n+3):nth-child(odd),
+        .row6 td:nth-child(n+3):nth-child(odd),
+        .row8 td:nth-child(n+3):nth-child(odd){
+            background-color: sienna;
+
+            /*opacity: 0.5;*/
+        }
+        .row0 td{
+            border-left: white;
+            border-top: white;
+            border-right: white;
+            transform: rotate(180deg);
+        }
+        .row9 td{
+            border: white;
+        }
+        td:first-child{
+            border: white;
+            text-align: center;
+        }
+        td:last-child{
+            transform: rotate(180deg);
+            border: white;
+        }
+        .cW1:hover {
+            color: violet;
+        }
+
+
+    </style>
+
+
+    <script type="text/javascript">
+
+        var letters = ['a','b','c','d','e','f','g','h'];
+        var chess = {
+            king:'&#9818;',
+            queen:'&#9819;',
+            bishop: {
+                b1:'&#9821;',
+                b2:'&#9821;'
+            },
+            //bishop2:'с2',
+            knight: {
+                k1:'&#9822;',
+                k2:'&#9822;'
+            },
+            //knight2:'к2',
+            rook: {
+                r1:'&#9820;',
+                r2:'&#9820;'
+            },
+            //rook2:'л2',
+            pawns: {
+                p1:'&#9823;',
+                p2:'&#9823;',
+                p3:'&#9823;',
+                p4:'&#9823;',
+                p5:'&#9823;',
+                p6:'&#9823;',
+                p7:'&#9823;',
+                p8:'&#9823;',
+            }
+        };
+        var c = {
+            w:chess,
+            b:chess
+        };
+        var orderW = [c.w.rook.r1, c.w.knight.k1, c.w.bishop.b1, c.w.queen, c.w.king, c.w.bishop.b2, c.w.knight.k2, c.w.rook.r2];
+        var orderB = [c.b.rook.r1, c.b.knight.k1, c.b.bishop.b1, c.b.queen, c.b.king, c.b.bishop.b2, c.b.knight.k2, c.b.rook.r2];
+
+
+        function CreateTable(){
+            var poz = document.getElementById('space');
+
+            var tab = document.createElement('table');
+            poz.appendChild(tab);
+            tab.style.border = '5';
+
+            var i, row, j, td;
+            for(i=0;i<=9;i++){
+                row = tab.insertRow(i);
+                row.className = 'row'+i;
+                for(j=0;j<=9;j++){
+                    td = document.createElement('td');
+                    row.appendChild(td);
+                    if(j===0 && i>0 && i<9) {
+                        var o = 0;
+                        td.innerText = 9-i;
+                    } else if(j===9 && i>0 && i<9) {
+                        td.innerText = 9-i;
+                        td.style.textAlign = 'center';
+                    } else if(i===9 && j>0 && j<9){
+                            td.innerText = letters[j-1];
+                            td.style.textAlign = 'center';
+                    } else if(i===0 && j>0 && j<9){
+                        td.innerText = letters[j-1];
+                        td.style.textAlign = 'center';
+                    } else if(i===1 && j>0 && j<9){
+                        td.innerHTML = orderW[o];
+                        o++;
+                        td.style.textAlign = 'center';
+                        td.style.color = 'white';
+                        td.className = 'cW'+o;
+                    } else if(i===2 && j>0 && j<9){
+                            td.innerHTML = c.w.pawns['p'+j];
+                            td.style.textAlign = 'center';
+                            td.style.color = 'white';
+                            td.className = 'pW'+j;
+
+                    } else if(i===7 && j>0 && j<9){
+                        td.innerHTML = c.b.pawns['p'+j];
+                        td.style.textAlign = 'center';
+                        td.style.color = 'black';
+                        td.className = 'pB'+j;
+                    } else if(i===8 && j>0 && j<9){
+                        td.innerHTML = orderB[o];
+                        o++;
+                        td.style.textAlign = 'center';
+                        td.style.color = 'black';
+                        td.className = 'W'+j;
+                    }
+                    td.style.fontSize = 40+'px';
+                }
+            }
+        }
+
+
+
+
+
+
+
+    </script>
+
+</head>
+
+<body onload="CreateTable()" id="space">
+
+
+
+
+</body>
+
+</html>

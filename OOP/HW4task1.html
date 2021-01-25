@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HW4 Task 1</title>
+
+    <script>
+
+        // Написать функцию, преобразующую число в объект.
+        var result = {};
+        var userNumber = prompt('Введите число от 0 до 999.');
+        //var numbers = userNumber.split('');
+        var numLen = userNumber.length;
+        console.log(f(userNumber));
+
+        function f(n) {
+            if (isNaN(n) || n < 0 || n > 999) {
+                console.log('Было введено не соответствующее запросу число');
+            } else {
+                switch (numLen) {
+                    case 3:
+                        result.units = ' единицы: ' + userNumber[2];
+                        result.dozens = ' десятки: ' + userNumber[1];
+                        result.hundreds = 'сотни: ' + userNumber[0];
+                        break;
+                    case 2:
+                        result.units = ' единицы: ' + userNumber[1];
+                        result.dozens = ' десятки: ' + userNumber[0];
+                        break;
+                    default:
+                        result.units = ' единицы: ' + userNumber;
+                        break;
+                }
+            }
+            return result;
+        }
+
+
+/*
+            var h = Math.trunc(n / 100);
+            result.hundreds = h;
+            var t = Math.trunc((n - (h * 100)) / 10);
+            result.dozens = t;
+            var u;
+            u = n - ((h * 100) + (t * 10));
+            result.units = u;
+            console.log(result);
+
+ */
+
+
+        /*
+        function f(n) {
+            while(isNaN(n) || n<0){
+               userNumber = prompt('Введите число от 0 до 999.');
+            }
+                var h = Math.trunc(n / 100);
+                var t = Math.trunc((n - (h * 100)) / 10);
+                var u = n - ((h * 100) + (t * 10));
+                document.write('единицы: ' + u + ' , десятки: ' + t + ' , сотни: ' + h);
+
+        }
+        */
+
+
+    </script>
+
+
+
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // Асинхронные запросы
+        //      Способ передачи данных на сервер
+                //  1) йифровой спосоь (биты/байты)  - 0/1
+                //  2) HTML                          - xml
+                //  3) String                        - JSON
+
+        // JSON
+        /*
+        let obj = {
+            a: 100,
+            b: 'some string',
+            c: true,
+            d: null,
+            e: undefined
+        }
+
+        let objJSON = JSON.stringify(obj); // преобразует в JSON
+        // JSON.parse (objJSON) // вернет спарсеный вариант
+*/
+        // Async
+
+        //  1) Функции обратного вызова
+        //  2) Промисы
+        //  3) Fetch
+        //  4) Async ... await
+
+        //  1) XML HTTP REQUEST
+
+        function getDTO(){
+            setTimeout(()  => {
+                transferedData = '{"a": 100500}'
+            }, 0)
+        }
+
+        let transferedData;
+
+        //async
+        //getDTO(); //DTO - Data Transfer Object
+        //...
+        //...
+        //PROFIT
+        //console.log(transferedData);
+
+        // function getDTOCB (cb){
+        //     setTimeout(()  => { // сам по себе асинхронен, а все что вне его - синхронно
+        //         transferedData = '{"a": 100500}'
+        //         cb()
+        //     }, 0)
+        // }
+        //
+        // getDTOCB (() => {
+        //     console.log(transferedData);
+        // }) // not
+
+
+
+       /* function makeGETRequest(url) { // можно вернуть параметр call back
+            let xhr;
+            //if (window.XMLHttpRequest) {// "эта часть не обязательна  //
+            xhr = new XMLHttpRequest()                             // это важно!
+            //} else if (window.ActiveXObject) {                          //
+            //    xhr = new ActiveXObject("Microsoft.XMLHTTP");           //
+            //}                                                           //
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    return xhr.responseText;
+                } else {
+                    console.log('Server error');
+                }
+                //callback(xhr.responseText);
+            }
+            xhr.open('GET', url, true);
+            //console.log (xhr);
+            xhr.send();
+        }
+
+        */
+
+            let urlUsers = 'http://jsonplaceholder.typicode.com/users';
+            let users;
+
+            // function makeGETRequest(url, callback) {      // это все что связано с callback (1) Функции обратного вызова)
+            //     let xhr = new XMLHttpRequest()
+            //     xhr.onreadystatechange = function () {
+            //         if (xhr.readyState === 4) {
+            //             if (xhr.status === 200) {
+            //                 callback(xhr.responseText);
+            //             } else {
+            //                 console.log('Server error');
+            //             }
+            //         }
+            //         //callback(xhr.responseText);
+            //     }
+            //     xhr.open('GET', url, true);
+            //     //console.log (xhr);
+            //     xhr.send();
+            // }
+            //     makeGETRequest(urlUsers, (data) => {
+            //         users = JSON.parse (data);
+            //         console.log(users);
+            //     });
+
+            // 2) Promise
+
+        // function promiseReq (a) {
+        //     return new Promise ((res, rej) => { // Resolve / Reject
+        //         if (a) {
+        //             console.log('ok')
+        //             res('we got '+a);
+        //         } else {
+        //             console.log('not ok')
+        //             rej ('Some error tralala');
+        //         }
+        //     })
+        // }
+
+        // promiseReq()
+        // .then(все хорошо) это методы обьекта promise
+        // .catch(все плохо)
+        // .finally(в любом случае выполнится в конце)
+
+        // promiseReq (100)
+        //     .then(resolvedData => { // promise Value on resolved status
+        //         console.log(resolvedData);
+        //     })
+        //     .catch(rejectedData => { // promise Value on rejected
+        //         // status
+        //         console.log(rejectedData);
+        //     })
+        //     .finally(() => {
+        //         console.log ('Promise ended');
+        //     })
+
+        // =============================================================
+
+
+        // function makeGETRequestPromise(url) {      // тоже самое через promise
+        //     return new Promise((res, rej) => {
+        //         let xhr = new XMLHttpRequest()
+        //         xhr.onreadystatechange = function () {
+        //             if (xhr.readyState === 4) {
+        //                 if (xhr.status === 200) {
+        //                     res(xhr.responseText);
+        //                 } else {
+        //                     rej('Server err');
+        //                 }
+        //             }
+        //         }
+        //         xhr.open('GET', url, true);
+        //         xhr.send();
+        //
+        //     })
+        // }
+        //
+        // makeGETRequestPromise()
+        //     .then(dataJSON => JSON.parse (dataJSON))
+        //     .then(dataNotJSON => {
+        //         console.log(dataNotJSON)
+        //     })
+        //     .catch (err => {
+        //         console.log(err)
+        //     })
+        //     .finally(console.log('nice done'))
+
+
+        //============================================================
+         //FETCH ** огда освоил promise
+
+                        // let us;
+                        // fetch (urlUsers)
+                        // .then(d => d.json()) // d.json метод фетча, который позволяет перевести JSON в обычные данные, так же как JSON.parse  PROMISE
+                        // .then(data => {us = data})
+                        // .finally(() => console.log(us))
+
+        //============================================================
+        // Async await надо уметь делать всё
+
+        async function makeAsyncReq (url) {
+            let us;
+            try {
+                us = await fetch (url).then(d => d.json())
+                //us = us.json();
+            }
+            catch (e){
+                //
+            }
+            finally {
+                if (us){
+                    console.log (us);
+                }
+            }
+        }
+
+        makeAsyncReq(urlUsers)
+
+
+
+
+    </script>
+
+</body>
+
+</html>

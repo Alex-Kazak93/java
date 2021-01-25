@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=320, initial-scale=1">
+    <meta charset="utf-8">
+    <style>
+      body {
+        background-image: url(BackGround/gfwPusm-star-wars-space-background.jpg);
+        color: white;
+      }
+      .container {
+        height: 200px;
+      }
+      h1 {
+        text-align: center;
+      }
+      .circle {
+        border-radius: 50%;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+      }
+      fieldset {
+        margin-bottom: 40px;
+      }
+      .block {
+        width: 33%;
+        height: 600px;
+        display: inline-block;
+      }
+      a {
+        display: block;
+      }
+      fieldset {
+        margin-bottom: 40px;
+      }
+      ul {
+        list-style-type: none;
+      }
+      .header {
+        height: 100px;
+      }
+
+    </style>
+  
+
+    
+  </head>
+  <body>
+
+
+
+
+  <div class="container">
+    <div class="header">
+
+      <h1 id="hello">
+        Hello my young Padavane.<br>
+        Tell me your name.
+      </h1>
+
+    </div>
+    <form id="form1">
+      <fieldset id="dialogue">
+        <legend id="helper">Personal Information:</legend>
+        <input type="text" name="field1" placeholder="Name" id="field1"/>
+        <input type="text" name="field2" placeholder="Surname" id="field2"/>
+        <input type="button" value="Submit" id="btnsubmit" onclick="submitForm()">
+      </fieldset>
+
+    </form>
+  </div>
+
+
+
+  </body>
+
+  <script>
+
+    let i=1;
+
+    let user = {};
+    let quest = {
+      q1a: 'Glad to meet you, ',
+      q2a: ' What planet of Star Wars Univers you would like to go?',
+      q1b: 'Nice Choice, ',
+      q2b: 'Travel may take some time'
+
+    };
+
+
+    function submitForm() {
+
+      let frm = document.getElementById('form1');
+      let field1Value = document.getElementById('field1').value;
+      let field2Value = document.getElementById('field2').value;
+      //frm.submit(); // Submit
+      frm.reset();  // Reset
+      let hello = document.getElementById('hello');
+      let helper = document.getElementById('helper');
+      let field1 = document.getElementById('field1');
+      let field2 = document.getElementById('field2');
+      if (i === 1) {
+        field1.placeholder = field2.placeholder = 'Planet';
+        user.name = field1Value;
+        user.surname = field2Value;
+        hello.innerHTML = quest.q1a + field1Value + " " + field2Value + "<br>" + quest.q2a;
+        helper.innerHTML = "Name 1 or 2 planets you would like to go";
+        i++;
+        return false;
+      }
+      if (i === 2) {
+
+        helloHelper('Planet', field1Value, field2Value, quest.q1b, quest.q2b);
+
+        let fieldset = document.querySelector('fieldset');
+        let go = document.createElement('a');
+        go.href = "https://www.starwars.com/databank/" + user.planet1;
+        go.innerText = 'GO';
+        go.id = 'go';
+        document.querySelector('div').appendChild(go);
+        go.style.fontSize = 50 + 'px';
+        go.style.color = 'white';
+        go.style.textDecoration = 'none';
+        fieldset.style.display = 'none';
+        return false;
+      }
+    }
+      function helloHelper(placeholder, f1, f2, q1, q2) {
+        field1.placeholder = field2.placeholder = placeholder;
+        hello.innerHTML = q1 +user.name+"<br>"+ q2;
+        user.planet1 = f1;
+        user.planet2 = f2;
+        helper.innerHTML = "Name 1 or 2 planets you would like to go";
+        i++;
+        console.log(user);
+
+        return false;
+      }
+
+    let img = 1;
+    get('https://swapi.dev/api/planets/');
+    function get(url) {
+      fetch(url)
+              .then(response => response.json())
+              .then(data =>
+                      data.results.forEach(planet => {
+                        let i = 1;
+                        let block = document.createElement('div');
+                        block.className = "block";
+                        document.querySelector('body').appendChild(block);
+                        let div = document.createElement('div');
+                        block.appendChild(div);
+                        let circle = document.createElement('a');
+                        circle.href = "Planets/" + img + ".png";
+                        circle.className = "circle";
+                        if(planet.name === 'Yavin IV'){
+                          planet.name = 'Yavin-4';
+                        }
+                        circle.id = planet.name;
+                        circle.style.backgroundImage = "url(Planets/" + img + ".png)";
+                        circle.style.height = circle.style.width = circle.style.backgroundSize = 250 + 'px'; //planet.diameter/50+'px';
+                        img++;
+                        block.appendChild(circle);
+                        let newUl = document.createElement('ul');
+                        block.appendChild(newUl);
+                        for (key in planet) {
+                          if (i < 10) {
+                            let liNew = document.createElement('li');
+                            liNew.id = key;
+                            liNew.innerText = key + ': ' + planet[key];
+                            newUl.appendChild(liNew);
+                            i++;
+                          }
+                        }
+                      })
+              )
+    }
+
+  </script>
+</html>

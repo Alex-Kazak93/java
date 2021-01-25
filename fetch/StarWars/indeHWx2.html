@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+
+        let url = new URL('https://swapi.dev/api/');
+        url.pathname = ('api/planets');
+        get(url)
+        function get(url){
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                data.results.forEach(planet => {
+                    let element = document.createElement('div');
+                    let ul = document.createElement('ul');
+                  //  for(var i=0;i<8;i++) {
+                        let liName = document.createElement('li');
+                        liName.innerText = planet.name
+                        let liGrav = document.createElement('li');
+                        liGrav.innerText = planet.gravity;
+                        document.querySelector('body').appendChild(element);
+                        element.appendChild(ul);
+                        element.appendChild(liName);
+                        element.appendChild(liGrav);
+                   // }
+
+                })
+            })
+        }
+
+
+    </script>
+
+</head>
+
+<body>
+
+
+
+</body>
+
+</html>

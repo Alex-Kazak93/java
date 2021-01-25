@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .x{
+            color:red;
+        }
+        .test {
+            font-size:30px;
+        }
+    </style>
+
+    <meta charset="UTF-8">
+    <title>Dom</title>
+</head>
+<body>
+    <h1 id="header1">Заголовок 1</h1>
+    <h1 id="header2">Заголовок 2</h1>
+    <h1 id="header3">Заголовок 3</h1>
+    <h1 id="header4">Заголовок 4</h1>
+
+    <p class="article">Первый параграф</p>
+    <p class="article">Второй параграф</p>
+    <p class="article">Третий параграф</p>
+
+    <div>
+        <div> <b> Вложенный блок </b> </div>
+    </div>
+
+    <ul class="x">
+        <li>1 элемент</li>
+        <li>2 элемент</li>
+        <li>3 элемент</li>
+        <li>4 элемент</li>
+        <li>5 элемент</li>
+    </ul>
+
+    <script>
+
+        var list = document.querySelector(".x");
+        var newElement = document.createElement("li");
+        newElement.innerText = 'Новый элемент';
+        list.insertBefore(newElement,list.children[4]);
+
+        //Выводим все тэги body
+
+        for(var i=0;i<document.body.childNodes.length;i++){
+            //console.log(document.body.childNodes[i]);
+        }
+
+        //Выведем четные и нечетные заголовки соответствующим цветом
+
+        var headers = document.querySelectorAll("h1");
+        var h = headers.length;
+        var c, size = 20;
+        for( i=0;i<h;i++){
+            if(i % 2 === 0){
+            c = 'red';
+        } else {
+            c = 'blue'
+            }
+            headers[i].style.color = c;
+            headers[i].style.fontSize = size+'px';
+            size += 10;
+        }
+
+        var p = document.getElementsByClassName('article');
+        var l = p.length;
+        for(i=0,size=20;i<l;i++,size+=20){
+            p[i].style.fontWeight = 'bold';
+            p[i].style.fontSize = size+'px';
+        }
+
+        var text = document.createTextNode('Новый текстовый узел');
+        document.querySelector('div div').appendChild(text); // добавляем в конец нашего вложенного блока div
+
+        var link = document.createElement('a');// <a></a>
+        link.href = 'https://google.com';
+        link.innerHTML = 'Перейти в Google &#9822;';
+        link.className = 'x test'; // можно указывать несколько классов через пробел
+        document.querySelector('div').appendChild(link);
+
+
+
+    </script>
+
+    //
+
+</body>
+</html>

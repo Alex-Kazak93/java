@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script>
+
+        function powl(num,pow) {
+            if(pow==1)
+                return num;
+            else
+                num*powl(num,pow-1);
+        }
+        var stringNumber = prompt('Введите 2 числа через пробел, чтобы найти их степень. Первое число будет числом, второе - степенью.');
+        var nums = stringNumber.split(" ");
+        var x = nums[0];
+        var y = nums[1];
+        alert(powl(x,y));
+
+
+
+
+
+        /*
         function f(x){
             if(x==0){
                 return;
@@ -30,7 +48,7 @@
         alert(factorial(5));
 
         // 5 * f(4) = 5 * 4 * f(3) = 5 * 4 * 3 * f(2) = 5 * 4 * 3 * 2 * 1 = 120
-
+*/
     </script>
 </head>
 <body>

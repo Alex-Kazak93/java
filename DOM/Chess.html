@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .blocks {
+            border: 1px solid black;
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            float: left;
+        }
+        .black2468:nth-child(1n){
+            background-color: #000000;
+            opacity: 0.5;
+        }
+        .black1357:nth-child(2n){
+            background-color: #000000;
+            opacity: 0.5;
+        }
+        .dom {
+            width: 416px;
+            height: 416px;
+            text-align: center;
+            margin-top: 200px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Chess</title>
+
+
+
+</head>
+<body>
+
+    <div class="dom"></div>
+
+    <script defer>
+        var b, block, sqrt, sum;
+        function chess(n){
+            sqrt = +Math.sqrt(n);
+            sum = sqrt;
+            b = 'black';
+            for(var i=0;i<n;i++){
+                /*if(i===sqrt){
+                    sqrt += sum;
+                    var br = document.createElement('br');
+                    document.querySelector('div').appendChild(br);
+                }*/
+                block = document.createElement('div');
+                //block.innerHTML = '&#9822;';
+                document.querySelector('div').appendChild(block);
+                if(i<=8 || i>=17 && i<= 24 || i>=33 && i<=40 || i>=49 && i<=56){
+                    block.className = 'blocks black1357';
+                } else
+                    block.className = 'blocks black2468';
+            }
+        }
+         // userNumber = +prompt('какое количество квадратов должно быть на вашей шахматной доске?');
+        chess(64);
+
+    </script>
+
+</body>
+</html>
